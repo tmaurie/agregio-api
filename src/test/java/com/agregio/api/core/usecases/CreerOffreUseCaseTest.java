@@ -32,7 +32,7 @@ class CreerOffreUseCaseTest {
     @Test
     void shouldCreateOffre() {
         // Given
-        Map<String, Object> dataSource = new HashMap<>();
+        Map<String, Offre> dataSource = new HashMap<>();
         CreerOffreIn offreIn = buildOffreIn();
         Offre expectedOffre = new Offre(id, nom, Marche.PRIMAIRE, blocHoraires, null);
         CreerOffreUseCase creerOffreUseCase = buildOffreUseCase(dataSource);
@@ -47,7 +47,7 @@ class CreerOffreUseCaseTest {
         return new CreerOffreIn("Offre1", Marche.PRIMAIRE, blocHoraires);
     }
 
-    private CreerOffreUseCase buildOffreUseCase(Map<String, Object> dataSource) {
+    private CreerOffreUseCase buildOffreUseCase(Map<String, Offre> dataSource) {
         OffreRepository offreRepository = new InMemoryOffreRepository(dataSource);
         return new CreerOffreUseCase(offreRepository);
     }

@@ -27,7 +27,7 @@ class ListerParcsUseCaseTest {
 
     @Mock
     private OffreRepository ofrreRepository;
-    private Map<String, Object> dataSource;
+    private Map<String, Parc> dataSource;
 
     private Offre offre;
     @BeforeEach
@@ -50,7 +50,7 @@ class ListerParcsUseCaseTest {
         assertThat(offres).hasSize(1);
     }
 
-    private ListerParcsUseCase buildListerParcUseCase(Map<String, Object> dataSource, OffreRepository offreRepository) {
+    private ListerParcsUseCase buildListerParcUseCase(Map<String, Parc> dataSource, OffreRepository offreRepository) {
         ParcRepository parcRepository = new InMemoryParcRepository(dataSource, offreRepository);
         return new ListerParcsUseCase(parcRepository);
     }

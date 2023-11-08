@@ -2,6 +2,7 @@ package com.agregio.api.configuration;
 
 import com.agregio.api.core.Marche;
 import com.agregio.api.core.model.Offre;
+import com.agregio.api.core.model.Parc;
 import com.agregio.api.core.usecases.CreerOffreUseCase;
 import com.agregio.api.core.usecases.CreerParcUseCase;
 import com.agregio.api.core.usecases.ListerOffresUseCase;
@@ -18,7 +19,8 @@ import java.util.UUID;
 @Configuration
 public class UseCaseTestConfiguration {
 
-    private final Map<String, Object> offres = new HashMap<>();
+    private final Map<String, Offre> offres = new HashMap<>();
+    private final Map<String, Parc> parcs = new HashMap<>();
 
     @Bean
     public CreerOffreUseCase getCreerOffreUseCase() {
@@ -49,7 +51,7 @@ public class UseCaseTestConfiguration {
         UUID uuid = UUID.fromString("38400000-8cf0-11bd-b23e-10b96e4ef00d");
         offres.put("Offre1", new Offre(uuid, "Offre1", Marche.PRIMAIRE, null, null));
         return new ListerParcsUseCase(
-                new InMemoryParcRepository(offres, new InMemoryOffreRepository(offres))
+                new InMemoryParcRepository(parcs, new InMemoryOffreRepository(offres))
         );
     }
 }

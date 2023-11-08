@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ListerOffresUseCaseTest {
 
 
-    private Map<String, Object> dataSource;
+    private Map<String, Offre> dataSource;
 
     @BeforeEach
     void setUp() {
@@ -42,7 +42,7 @@ class ListerOffresUseCaseTest {
         assertThat(offres).hasSize(2);
     }
 
-    private ListerOffresUseCase buildListerOffresUseCase(Map<String, Object> dataSource) {
+    private ListerOffresUseCase buildListerOffresUseCase(Map<String, Offre> dataSource) {
         OffreRepository offreRepository = new InMemoryOffreRepository(dataSource);
         return new ListerOffresUseCase(offreRepository);
     }

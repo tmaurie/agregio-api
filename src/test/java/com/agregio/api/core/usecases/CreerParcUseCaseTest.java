@@ -1,6 +1,7 @@
 package com.agregio.api.core.usecases;
 
 import com.agregio.api.core.TypeParc;
+import com.agregio.api.core.model.Offre;
 import com.agregio.api.core.model.Parc;
 import com.agregio.api.core.ports.OffreRepository;
 import com.agregio.api.core.ports.ParcRepository;
@@ -31,14 +32,15 @@ class CreerParcUseCaseTest {
     @Test
     void shouldCreateParc() {
         // Given
-        Map<String, Object> dataSource = new HashMap<>();
+        Map<String, Parc> dataSourceParc = new HashMap<>();
+        Map<String, Offre> dataSourceOffre = new HashMap<>();
         CreerParcIn parcIn = buildParcIn();
         Parc expectedParc = new Parc(uuid, nom, TypeParc.EOLIEN, 1000);
-        CreerParcUseCase creerParcUseCase = buildParcUseCase(dataSource);
+        CreerParcUseCase creerParcUseCase = buildParcUseCase(dataSourceParc, dataSourceOffre);
         // When
         creerParcUseCase.execute(parcIn);
         //Then
-        assertThat(dataSource.get(nom)).usingRecursiveComparison().ignoringFields("id").isEqualTo(expectedParc);
+        assertThat(dataSourceParc.get(nom)).usingRecursiveComparison().ignoringFields("id").isEqualTo(expectedParc);
     }
 
 
@@ -46,9 +48,9 @@ class CreerParcUseCaseTest {
         return new CreerParcIn("Parc1", TypeParc.EOLIEN, 1000);
     }
 
-    private CreerParcUseCase buildParcUseCase(Map<String, Object> dataSource) {
-        OffreRepository offreRepository = new InMemoryOffreRepository(dataSource);
-        ParcRepository parcRepository = new InMemoryParcRepository(dataSource, offreRepository);
+    private CreerParcUseCase buildParcUseCase(Map<String, Parc> dataSourceParc, Map<String, Offre> dataSourceOffre) {
+        OffreRepository offreRepository = new InMemoryOffreRepository(dataSourceOffre);
+        ParcRepository parcRepository = new InMemoryParcRepository(dataSourceParc, offreRepository);
         return new CreerParcUseCase(parcRepository);
     }
 

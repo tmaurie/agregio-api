@@ -12,9 +12,9 @@ import java.util.Map;
 public class InMemoryParcRepository implements ParcRepository {
 
     private final OffreRepository offreRepository;
-    private final Map<String, Object> dataSource;
+    private final Map<String, Parc> dataSource;
 
-    public InMemoryParcRepository(Map<String, Object> dataSource, OffreRepository offreRepository) {
+    public InMemoryParcRepository(Map<String, Parc> dataSource, OffreRepository offreRepository) {
         this.dataSource = dataSource;
         this.offreRepository = offreRepository;
     }
