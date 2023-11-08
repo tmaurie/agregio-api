@@ -1,7 +1,9 @@
 package com.agregio.api.entrypoints.controllers;
 
 import com.agregio.api.core.Marche;
+import com.agregio.api.core.model.Parc;
 import com.agregio.api.core.usecases.CreerParcUseCase;
+import com.agregio.api.core.usecases.ListerParcsUseCase;
 import com.agregio.api.entrypoints.in.CreerParcIn;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,14 +14,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/parcs")
 public class ParcController {
 
     private final CreerParcUseCase creerParcUseCase;
 
-    public ParcController(CreerParcUseCase creerParcUseCase) {
+    private final ListerParcsUseCase listerParcsUseCase;
+
+    public ParcController(CreerParcUseCase creerParcUseCase, ListerParcsUseCase listerParcsUseCase) {
         this.creerParcUseCase = creerParcUseCase;
+        this.listerParcsUseCase = listerParcsUseCase;
     }
 
     @PostMapping
@@ -29,8 +36,7 @@ public class ParcController {
     }
 
     @GetMapping("/{marche}")
-    public String listerParcsPourMarche(@PathVariable Marche marche) {
-
-        return "test";
+    public List<Parc> listerParcsPourMarche(@PathVariable Marche marche) {
+        return listerParcsUseCase.execute(marche);
     }
 }

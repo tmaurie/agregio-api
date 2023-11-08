@@ -1,17 +1,5 @@
 package com.agregio.api.core.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+public record BlocHoraire(Long id, int heureDebut, int heureFin, double quantiteEnergieMW, double prixPlancher) {
 
-@AllArgsConstructor
-@Getter
-@Setter
-public class BlocHoraire {
-
-    private Long id;
-    private int heureDebut;
-    private int heureFin;
-    private double quantiteEnergieMW;
-    private double prixPlancher;
 }

@@ -19,13 +19,13 @@ public class InMemoryOffreRepository implements OffreRepository {
 
     @Override
     public void creerOffre(Offre offre) {
-        dataSource.put(offre.getNom(), offre);
+        dataSource.put(offre.nom(), offre);
     }
 
     @Override
     public List<Offre> listeOffreParMarche(Marche marche) {
         return dataSource.values().stream()
-                .filter(o -> ((Offre) o).getMarche().equals(marche))
+                .filter(o -> ((Offre) o).marche().equals(marche))
                 .map(o -> (Offre) o)
                 .toList();
     }

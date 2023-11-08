@@ -21,14 +21,14 @@ public class InMemoryParcRepository implements ParcRepository {
 
     @Override
     public void creerParc(Parc parc) {
-        dataSource.put(parc.getNom(), parc);
+        dataSource.put(parc.nom(), parc);
     }
 
     @Override
     public List<Parc> listeParcParMarche(Marche marche) {
         List<Offre> offres = offreRepository.listeOffreParMarche(marche);
         return offres.stream()
-                .map(Offre::getParcs)
+                .map(Offre::parcs)
                 .flatMap(List::stream)
                 .toList();
     }
