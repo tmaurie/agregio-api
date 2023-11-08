@@ -24,3 +24,10 @@ cet exercice, ce qui est déjà, nous en avons conscience, un fort investissemen
 limite de temps ne vous permettra pas de terminer l'exercice, donc nous n'attendons rien de fini mais plutôt que cela
 reflète votre approche du développement.
 
+### Stack technique
+Java 21 / SpringBoot 3
+
+### Axes d'amélioration
+- Implementer la persistence des données
+- Ne pas laisser la gestion des id aux entites (facilité de tests avec des InMemory)
+- Ameliorer la gestion des erreurs (exceptionHandler, messages d'erreurs, etc.)) 

@@ -39,7 +39,7 @@ class ParcControllerTest {
     void shouldListProducersForGivenMarket() throws Exception {
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("/api/parcs/{marche}", Marche.RAPIDE.name())
+                        .get("/api/parcs/{marche}", Marche.PRIMAIRE.name())
                         .accept("application/json"))
                 .andExpect(MockMvcResultMatchers
                         .status()

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -37,6 +38,10 @@ public class ParcController {
 
     @GetMapping("/{marche}")
     public List<Parc> listerParcsPourMarche(@PathVariable Marche marche) {
-        return listerParcsUseCase.execute(marche);
+        try {
+            return listerParcsUseCase.execute(marche);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
     }
 }

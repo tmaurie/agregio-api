@@ -1,6 +1,7 @@
 package com.agregio.api.core.usecases;
 
 import com.agregio.api.core.Marche;
+import com.agregio.api.core.exceptions.ParcNotFoundException;
 import com.agregio.api.core.model.Parc;
 import com.agregio.api.core.ports.ParcRepository;
 
@@ -15,7 +16,11 @@ public class ListerParcsUseCase {
     }
 
     public List<Parc> execute(Marche marche) {
-        return parcRepository.listeParcParMarche(marche);
+        List<Parc> parcs = parcRepository.listeParcParMarche(marche);
+        if (parcs.isEmpty()) {
+            throw new ParcNotFoundException(marche.name());
+        }
+        return parcs;
     }
 }
 
